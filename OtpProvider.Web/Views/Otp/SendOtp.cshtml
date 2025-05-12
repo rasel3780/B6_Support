@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewData["Title"] = "SendOtp";
+}
+
+<h1>SendOtp</h1>
+<h2>Send OTP via Email</h2>
+
+@if (ViewBag.Message != null)
+{
+    <div style="color:green">@ViewBag.Message</div>
+}
+
+@if (ViewBag.Error != null)
+{
+    <div style="color:red">@ViewBag.Error</div>
+}
+
+<form method="post">
+    <input type="email" name="email" placeholder="Enter email" required />
+    <button type="submit">Send OTP</button>
+</form>
+
