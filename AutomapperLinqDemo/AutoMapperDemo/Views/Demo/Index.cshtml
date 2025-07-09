@@ -1,0 +1,64 @@
+﻿@model IndexViewModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<ul>
+    <li><strong>Has At least one Product?</strong>
+        @(Model.HasAtLeastOneProduct ? "Yes" : "No")</li>
+    <li>
+        <strong>Is Course Avilable?</strong>
+        @(Model.IsCourseExist ? "Yes" : "No")
+    </li>
+</ul>
+
+<ul>
+    @foreach(var product in Model.ProductsByCategory)
+    {
+        <li>@product.Name</li>
+    }
+</ul>
+
+
+<ul>
+    <li>Total Student: @Model.TotalStudents</li>
+    <li>Total Admin: @Model.AdminCount</li>
+</ul>
+
+<h2>Aggregations</h2>
+<ul>
+    <li><strong>Max Salary: </strong>@Model.MaxSalary</li>
+    <li><strong>Min Salary: </strong>@Model.MinSalary</li>
+    <li><strong>Avg Salary: </strong>@Model.AvgSalary.ToString("F2")</li>
+</ul>
+
+
+<table>
+    <thead>
+        <th>Student name</th>
+        <th>Course</th>
+    </thead>
+    <tbody>
+        @foreach(var student in Model.AllStudentWithCourse)
+        {
+            <tr>
+                <td>@student.Name</td>
+                <td>
+                    <ul>
+                        @if(student.Courses!=null && student.Courses.Any())
+                        {
+                            foreach(var course in student.Courses)
+                            {
+                                <li>@course.Title</li>
+                            }
+                        }
+                    </ul>
+                </td>
+            </tr>
+            
+        }
+
+    </tbody>
+</table>
